@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
 
-function ProfileInfo({name,setname,save}:any) {
+function ProfileInfo({name,setname,save,capital}:any) {
     const [input,isInput] = useState(false)
+    const [followers,setFollowers] = useState(0);
 
     useEffect(() => {
         // handle info 
@@ -26,17 +27,17 @@ function ProfileInfo({name,setname,save}:any) {
         <div className="flex justify-between font-[200] leading-[2.5rem]">
             <div>
                 <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
-                25M</h2>
+                {followers}</h2>
                 <p>Followers</p>
             </div>
             <div>
                 <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
-                $2M</h2>
+                ${capital}</h2>
                 <p>Capital</p>
             </div>
             <div>
                 <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
-                18</h2>
+                {5}</h2>
                 <p>Rank</p>
             </div>
         </div>

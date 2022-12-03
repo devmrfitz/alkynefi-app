@@ -5,6 +5,7 @@ import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import axios from 'axios'
 import Image from 'next/image'
+import {getMeanSubPrice} from '../utils/Functions'
 //@ts-ignore
 function Home() {
   const [profilePic,setProfilePic] = useState<any>('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
@@ -14,6 +15,8 @@ function Home() {
   const [input,isInput] = useState(false)
   const [save,isSaved] = useState(false)
   const [maxSubVal,setMaxSubVal] = useState('0');
+  const [meanSubInvstmt,setMeanSubInvstmt] = useState('0');
+  const [capital,setCapital] = useState('0');
 
 
   useEffect(() =>{
@@ -88,7 +91,8 @@ function Home() {
 
       <ProfileInfo name={name} 
                    setname={setname}
-                   save={save}/>
+                   save={save}
+                   capital={capital}/>
 
       <div className ='font-[900] text-[2rem] leading-[2rem] text-textSecondary opacity-[80%] flex mt-5'>
             {input?
@@ -111,8 +115,8 @@ function Home() {
 
       <AssetInfo/>
       <h2 className='relative z-0 mb-[-2.5rem] leading-[5rem] text-[#974f83] opacity-75 font-[900] text-[7.75rem]'>Current Value</h2>
-      <CurrentValue/>
-      <Graph/>
+      <CurrentValue meanSubInvstmt={meanSubInvstmt} 
+                    capital={capital}/>
 
     </div>
   )

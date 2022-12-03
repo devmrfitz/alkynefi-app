@@ -3,6 +3,7 @@ import web3 from "web3";
 import { ethers } from "ethers";
 import { AuthContext,AuthContextProps } from "../context/AuthContext";
 //@ts-ignore
+import AlkyneWalletContract from '../contracts/AlkyneWalletContract.json'
 
 const { account, 
         getProvider,
@@ -18,19 +19,24 @@ const useBlockchain = async () =>{
     );
     let WalletContract:any = new ethers.Contract(
         account!,
-        // FollowContract.abi,
+        AlkyneWalletContract.abi,
         signer
     );
 
     return [provider, signer, ProfileContract, WalletContract];
 }
 
-const getMeanSubPrice = async () => {
-    const [provider, signer, ProfileContract, WalletContract] =
-    await useBlockchain();
+export const getMeanSubPrice = async () => {
+    const provider = await getProvider();
+    const signer = provider?.getSigner();
+    let WalletContract:any = new ethers.Contract(
+        account!,
+        AlkyneWalletContract.abi,
+        signer
+    );
     let value = -1;
     try {
-        let count = await ProfileContract.getMeanSubscriberInvestment();
+        let count = await WalletContract.getMeanSubscriberInvestment();
         value = parseInt(BigInt(count._hex).toString(10));
       } catch (err) {
         console.log(err, "error");
@@ -39,22 +45,34 @@ const getMeanSubPrice = async () => {
     return value;
 } 
 
-const getTotalInvestment = async () => {
+// const getTotalInvestment = async () => {
 
-}
+// }
 
-const getMaxInvestedToken = async() => {
+// const getMaxInvestedToken = async() => {
 
-}
+// }
 
-const follow = async () => {
 
-}
+// const follow = async () => {
 
-const getAllGuilds = async () => {
+// }
 
-}
+// const getAllGuilds = async () => {
 
-const createProfile = async () => {
+// }
 
-}
+// const createProfile = async () => {
+
+// }
+// const follow = async () => {
+
+// }
+
+// const getAllGuilds = async () => {
+
+// }
+
+// const createProfile = async () => {
+
+// }
