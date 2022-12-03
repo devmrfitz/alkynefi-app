@@ -7,7 +7,7 @@ export type AuthContextProps = {
     alkyneAddr: string | undefined,
     connect: ()=>void,
     disconnect: ()=>void,
-    getProvider: ()=>void,
+    getProvider: Function,
     chainId:any,
 };
 
@@ -39,13 +39,17 @@ export const AuthProvider = ({ children }: props) => {
             web3Modal.clearCachedProvider();
             setAccount(undefined);
             localStorage.removeItem("userData");
+            console.log('nikal gaya lode')
         }
     }
 
     const getProvider = async () => {
-        const provider = await web3Modal?.connect();
-        const ethersProvider = new providers.Web3Provider(provider);
-        return new ethers.providers.Web3Provider(provider);
+        if (account == undefined) {
+            return;
+        }
+        const modal = new Web3Modal();
+        const connection = await modal.connect();
+        return new ethers.providers.Web3Provider(connection);
     }
 
     const [web3Modal, setWeb3Modal] = useState<Web3Modal>()

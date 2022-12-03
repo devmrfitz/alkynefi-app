@@ -1,20 +1,18 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import GuildListItem,{GuildListProps} from '../components/GuildListItem'
-
-
+import {AuthContext,AuthContextProps} from '../context/AuthContext'
+import {GetAllAddresses} from '../utils/Functions'
+//@ts-ignore
 function Leaderboard() {
-  const [data,setData] = useState<[GuildListProps]|[]>([{
-    name: 'string',
-    followers: 1,
-  capital: 'string',
-  rank: 1,
-  image:{
-    url: 'string',
-    alt: 'hello'
-  }}]);
-
+  const [data,setData] = useState<[GuildListProps]|[]>([]);
+  const {getProvider} = useContext<AuthContextProps>(AuthContext)
+  
   useEffect(() =>{
-    //get data
+    const getData = async() => {
+      const res = await GetAllAddresses(getProvider);
+      setData(res);
+    }
+    getData();
   },[])
 
   return (
