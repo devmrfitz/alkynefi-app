@@ -59,3 +59,16 @@ export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, 
 }
 
 
+//get all addresses
+
+//get net investment
+
+//get max invested asset
+
+// get number of followers
+
+//follow function
+
+//swap functions
+
+

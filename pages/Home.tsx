@@ -1,12 +1,15 @@
 // @ts-nocheck
-import React,{useState,useRef,useEffect} from 'react'
+import React,{useState,useRef,useEffect,useContext} from 'react'
 import ProfileInfo from '../components/ProfileInfo'
 import AssetInfo from '../components/AssetInfo'
 import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import axios from 'axios'
 import Image from 'next/image'
-import {getMeanSubPrice} from '../utils/Functions'
+import {getMeanSubPrice,Signup} from '../utils/Functions'
+import { AuthContext,AuthContextProps } from '../context/AuthContext'
+
+const  {getProvider}  = useContext<AuthContextProps>(AuthContext);
 //@ts-ignore
 
 function Home() {
@@ -22,8 +25,11 @@ function Home() {
 
 
   useEffect(() =>{
-//is user saved
-
+      const getMean = async() => {
+        const val = await getMeanSubPrice(getProvider);
+        setMeanSubInvstmt(val);
+      }
+      getMean()
   },[])
 
   const uploadProfilePic = async (e:any) => {
@@ -44,9 +50,9 @@ function Home() {
   }
 
   const saveData = async () => {
-
-
-    isSaved(true)
+    // let 
+    // await Signup(getProvider,)
+    // isSaved(true)
   }
 
 
