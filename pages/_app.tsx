@@ -4,7 +4,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { AuthProvider } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
-import NavbarLand from '../components/NavBarLand';
+import NavbarLand from '../components/NavbarLand';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

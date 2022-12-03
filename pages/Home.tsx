@@ -68,7 +68,7 @@ function Home() {
 
 
   return (
-    <div className="relative h-[150vh] overflow-hidden bg-background bg-no-repeat	bg-fixed flex flex-col items-end  pt-[10%] pr-[20%]">
+    <div className="relative h-[150vh] overflow-hidden bg-background bg-cover bg-no-repeat	bg-fixed flex flex-col items-end  pt-[10%] pr-[20%]">
 
       <label className='flex flex-col justify-center items-center glassCircle w-[10rem] h-[10rem] absolute left-[20%]'>
           <div className="relative overflow-hidden rounded-md" >

@@ -3,7 +3,7 @@ import React from 'react'
 function Landing() {
   return (
     
-    <div className="relative h-screen overflow-hidden bg-background bg-no-repeat	bg-fixed">
+    <div className="relative h-screen overflow-hidden bg-background bg-cover bg-no-repeat	bg-fixed">
 
         <div className="flex flex-col Mulish font-[200] text-center pt-[10%] items-center z-10">
             <h1 className="tracking-[.25rem] text-textMain">

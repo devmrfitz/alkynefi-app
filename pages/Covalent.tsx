@@ -1,6 +1,4 @@
 import React,{useEffect} from 'react'
-
-import GuildListItem from '../components/GuildListItem'
 function Covalent() {
   // getMeta("80001","0xa3402ffc115cea35f0348b4abcc7532aed59b03f");;
   let [portfolioValue, setPortfolioValue] = React.useState([{}]);
@@ -61,7 +59,8 @@ const getMeta =async (
   var erc721 = "https://api.covalenthq.com/v1/{{chain_id}}/tokens/{{ppg_contract_address}}/nft_metadata/{{token_id}}/"
   url = url.replace("{{chain_id}}", chainId);
   url = url.replace("{{wallet_address}}", walletAddress);;
-  console.log("url",url);
+  console.log("urll",url);
+  console.log("requestOptions");
 
   let jsonReturn = await fetch(url, requestOptions)
 

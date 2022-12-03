@@ -13,7 +13,7 @@ function Guilds() {
   },[])
 
   return (
-    <div className="relative h-[150vh] overflow-hidden bg-background bg-no-repeat	bg-fixed flex flex-col justify-between items-center  pt-[10%]">
+    <div className="relative h-[150vh] overflow-hidden bg-background bg-cover bg-no-repeat	bg-fixed flex flex-col justify-between items-center  pt-[10%]">
       <SearchBar name={name} 
                  setName={setName}/>
 
