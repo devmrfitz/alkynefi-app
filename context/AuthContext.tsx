@@ -4,6 +4,7 @@ import Web3Modal from "web3modal";
 // @ts-ignore
 export type AuthContextProps = {
     account: string | undefined,
+    alkyneAddr: string | undefined,
     connect: ()=>void,
     disconnect: ()=>void,
     getProvider: ()=>void,
@@ -49,6 +50,7 @@ export const AuthProvider = ({ children }: props) => {
 
     const [web3Modal, setWeb3Modal] = useState<Web3Modal>()
     const [account, setAccount] = useState<string | undefined>("")
+    const [alkyneAddr, setAlkyneAddr] = useState<string | undefined>("")
     const [chainId, setChainId] = useState<any>()
 
     useEffect(() => {
@@ -72,6 +74,7 @@ export const AuthProvider = ({ children }: props) => {
                 connect,
                 disconnect,
                 getProvider,
+                alkyneAddr,
                 chainId,
             }}
         >
