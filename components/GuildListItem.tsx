@@ -14,30 +14,34 @@ export type GuildListProps = {
 
 function GuildListItem({name, followers, capital, rank, image}:GuildListProps) {
   return (
-    <div className="flex flex-1 border justify-between">
-      <div className="flex flex-col justify-center items-center border m-10">
+    <div className="divBackground flex justify-around items-center mt-5">
+      <div className="flex flex-col justify-center items-center  m-10">
             <Image src={'/User.png'} width={150} height={150} alt="alyne"/>            
-            <Image src={'/Follow.png'} width={100} height={100} alt="alyne"/>
+            <button className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
+              Follow
+            </button>
       </div>
-      <div className="flex font-[900] flex-col justify-center items-center  m-10 ">
-            <p className="text-[3rem] leading-[2rem] text-textSecondary opacity-[80%]">{name}</p>
-            <div className='flex mt-10'>
-              <div className='flex-1 border'>
-            <p className="text-[2rem] leading-[1rem] text-textAccent pt-1 mr-20">
-              {followers}
-               </p>
-            <p className="text-[1rem] leading-[1rem] text-textMain mt-2 mr-20">followers </p>
-              </div>
-              <div className='flex-1 border'>
-            <p className="text-[2rem] leading-[1rem] text-textAccent pt-1 mr-20">
-              {capital}</p>
-            <p className="text-[1rem] leading-[1rem] text-textMain mt-2 mr-20">Capital </p>
-              </div>
-              <div className='flex-1 border'>
-            <p className="text-[2rem] leading-[1rem] text-textAccent pt-1 mr-20">{rank} </p>
-            <p className="text-[1rem] leading-[1rem] text-textMain mt-2 mr-20">Rank </p>
-              </div>
+      
+      <div>
+        <h1 className='font-[900] text-[4rem] leading-[6rem] text-textSecondary opacity-[80%]'>Vishnu Shon</h1>
+
+        <div className="flex justify-between font-[200] leading-[2.5rem]">
+            <div>
+                <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
+                25M</h2>
+                <p>Followers</p>
             </div>
+            <div>
+                <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
+                $2M</h2>
+                <p>Capital</p>
+            </div>
+            <div>
+                <h2 className ='font-[900] text-[3rem]  text-secondary opacity-[80%]'>
+                18</h2>
+                <p>Rank</p>
+            </div>
+        </div>
       </div>
     </div>
   )
