@@ -6,47 +6,43 @@ import { AuthContext,AuthContextProps } from "../context/AuthContext";
 import AlkyneWalletContract from '../contracts/AlkyneWalletContract.json'
 import Orchestrator from '../contract/Orchestrator.json'
 
-const { account, 
-        getProvider,
-        chainId} = useContext<AuthContextProps>(AuthContext);
 
-const useBlockchain = async () =>{
+const useBlockchain = async (getProvider:any) =>{
     const provider = await getProvider();
     const signer = provider?.getSigner();
-    let Orchestrator:any = new ethers.Contract(
-        account!,
+    let OrchestratorContract:any = new ethers.Contract(
+        "",
         // ProfileContract.abi,
         signer
     );
     let WalletContract:any = new ethers.Contract(
-        account!,
+        "",
+        AlkyneWalletContract.abi,
+        signer
+    );
+    let LensProfileContract:any = new ethers.Contract(
+        "",
         AlkyneWalletContract.abi,
         signer
     );
 
-    return [provider, signer, Orchestrator, WalletContract];
+    return [provider, signer, OrchestratorContract, WalletContract, LensProfileContract];
 }
 
-export const getMeanSubPrice = async () => {
-    const provider = await getProvider();
-    const signer = provider?.getSigner();
-    let WalletContract:any = new ethers.Contract(
-        account!,
-        AlkyneWalletContract.abi,
-        signer
-    );
+export const GetMeanSubPrice = async (getProvider : Function) => {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
     let value = -1;
     try {
         let count = await WalletContract.getMeanSubscriberInvestment();
         value = parseInt(BigInt(count._hex).toString(10));
-      } catch (err) {
+      } catch (err: any) {
         console.log(err, "error");
         alert(err.message);
     }
     return value;
 } 
 
-export const signup = async () => {
+export const Signup = async () => {
     const provider = await getProvider();
     const signer = provider?.getSigner();
     let AlkyneOrchestrator:any = new ethers.Contract(
