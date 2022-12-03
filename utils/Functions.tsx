@@ -42,23 +42,20 @@ export const GetMeanSubPrice = async (getProvider : Function) => {
     return value;
 } 
 
-export const Signup = async () => {
-    const provider = await getProvider();
-    const signer = provider?.getSigner();
-    let AlkyneOrchestrator:any = new ethers.Contract(
-        account!,
-        Orchestrator.abi,
-        signer
-    );
-    let value = -1;
+export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, maxAmount  :any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
     try {
-        let count = await AlkyneOrchestrator.createProfile();
-        value = parseInt(BigInt(count._hex).toString(10));
-      } catch (err) {
+        let count = await OrchestratorContract.createProfile(userHandle, ipfsURI,maxAmount);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
         console.log(err, "error");
         alert(err.message);
+        out = err.message;
     }
-    return value;
+    return out;
 }
 
 
