@@ -24,9 +24,14 @@ function Home() {
   const [maxAmount,setMaxAmount] = useState('0');
   const [meanSubInvstmt,setMeanSubInvstmt] = useState('0');
   const [capital,setCapital] = useState('0');
+  const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
 
 
   useEffect(() =>{
+    console.log(account)
+    if (account===""){
+      Router.push('/BlurHome')
+  }
       const getMean = async() => {
         const val = await GetMeanSubPrice(getProvider);
         console.log(val);

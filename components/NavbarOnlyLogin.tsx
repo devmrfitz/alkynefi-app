@@ -3,7 +3,7 @@ import {AuthContext,AuthContextProps} from "../context/AuthContext";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import Router from 'next/router';
 function NavbarOnlyLogin() {
   const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
   const router = useRouter();
@@ -16,11 +16,18 @@ function NavbarOnlyLogin() {
     }
     getPageLocation();
 })
+// button onclick handler function
+  const handleLogin = () => {
+    console.log('logout');
+    disconnect();
+    router.push('/BlurHome');
+    }
   
+    console.log(account, typeof account ,"account");
   return (
     <div className="absolute z-20 w-screen flex items-center justify-end  p-5">
 
-      <button className="button p-2" onClick={account?disconnect:connect}>
+      <button className="button p-2" onClick={account?handleLogin:connect}>
         {account?'Logout':'Login'}
       </button>
 

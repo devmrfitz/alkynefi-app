@@ -24,7 +24,7 @@ function Navbar() {
         <Image src={'/alkyne.png'} width={50} height={50} alt="alyne"/>
       </Link>
 
-      <div className="Mulish font-[200] flex w-[40%] justify-evenly">
+      {account&&<div className="Mulish font-[200] flex w-[40%] justify-evenly">
         <Link href={'/'}>
           <p style={{color:path==='/'?'#d1318c':'#f1f1f1'}}>Home</p>
         </Link>
@@ -40,9 +40,9 @@ function Navbar() {
         <Link href={'/Notifs'}>
           <p style={{color:path==='/Notifs'?'#d1318c':'#f1f1f1'}}>Notifications</p>
         </Link>
-      </div>
+      </div>}
 
-      <button className="button p-2" onClick={account?disconnect:connect}>
+      <button className="button p-2" onClick={account?()=>{disconnect();router.push('/Landing')}:()=>{connect()}}>
         {account?'Logout':'Login'}
       </button>
 
