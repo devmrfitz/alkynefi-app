@@ -10,7 +10,7 @@ function Test() {
         <div className='flex-1 flex flex-wrap mt-10'>
             <TradeTokenCard destination='From' tokenName='eth' price='0.987'/>
             <div className='items-center justify-center self-center'>
-            <Image src='/swap.png' height={50} width={50} />
+            <Image src='/swap.png' height={50} width={50} alt={''} />
             </div>
             <TradeTokenCard destination='To' tokenName='anuv' price='0.987'/>
             {/* <TradeTokenCard />   */}
@@ -18,16 +18,16 @@ function Test() {
         <div className='flex-1 flex flex-wrap mt-10'>
             <TradeTokenDetails items={
                 [
-                ['Price', '0.324'],
-                ['per', 'ETH'],
-                ['slippage', '0.1%'],
+                [0,'Price', '0.324'],
+                [1,'per', 'ETH'],
+                [2,'slippage', '0.1%'],
                 ]
             }/>
             <TradeTokenDetails items={
                 [
-                ['Maximum sold', '27.24 ANUV'],
-                ['Price Impact', '10.2%'],
-                ['Liquidity Provider Fee', '0.05394 ANUV'],
+                [0,'Maximum sold', '27.24 ANUV'],
+                [1,'Price Impact', '10.2%'],
+                [2,'Liquidity Provider Fee', '0.05394 ANUV'],
                 ]
             }/>
         </div>
@@ -71,9 +71,9 @@ function TradeTokenDetails(
         {items.map(element => {
             console.log(element[0]);
             return (
-                    <div className="flex flex-1 justify-between px-10 pb-5 ">
-                        <p>{element[0]}</p>
+                    <div key={element[0]} className="flex flex-1 justify-between px-10 pb-5 ">
                         <p>{element[1]}</p>
+                        <p>{element[2]}</p>
                     </div>
             )
         })}
