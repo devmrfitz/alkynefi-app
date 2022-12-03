@@ -1,4 +1,4 @@
-export default  LensHubContractABI = [
+export default LensHubContractABI = [
 	{
 		"inputs": [
 			{

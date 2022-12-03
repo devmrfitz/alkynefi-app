@@ -11,7 +11,27 @@ export default function Teste() {
     console.log(x," x new")
   }
   return (
-    <div><button 
+    <div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
+      <button 
     onClick={() => {
       console.log('teste')
       handler();
