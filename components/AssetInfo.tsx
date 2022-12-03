@@ -9,14 +9,15 @@ function AssetInfo() {
   let portfolio=[];
   let portfoliocopy=[];
   useEffect(() => { 
+    portfolio=[];
+    portfoliocopy=[];
     getMeta("80001","0xd8a8dd0177e0b4645ba92ab6a3e6ffbb0e18a17b")
    .then((response) => response.json())
    .then((json) => {
        setPortfolioValue(json);
    }).then(()=>{
        setLoading(false);
-       console.log(loading)
-       console.log(portfolioValue)
+
    })
    !loading && portfolioValue.data.items.map((item:any,index)=>{
        if (index==0){
@@ -24,23 +25,16 @@ function AssetInfo() {
            portfolio.push(0)
        })
    }
-   portfoliocopy=portfolio;
    })
-   console.log(portfolio)
-   // for (let i = 0; i < portfolioValue.data.items[0].holdings.length; i++) {
-   //     // console.log(portfolio)
-   //     portfolio.push(0)
-   // }
-
    !loading && portfolioValue.data.items.map((item) => {
        item.holdings.map((itemHoldings, index) => {
-           // console.log(item.close.balance,item.close.quote)
-           // console.log(itemHoldings.close.balance*itemHoldings.close.quote/1e18)
            portfolio[index] += itemHoldings.close.balance*itemHoldings.close.quote/1e18
    
    })})
-   // // console.log(portfolio)
    setPortfolioValueUSDPast(portfolio)
+   portfolio.map((item,index)=>{
+    portfoliocopy.push(index+1)
+   });
    var config = {
        type: "line",
        data: {
@@ -129,6 +123,7 @@ function AssetInfo() {
      };
      var ctx = document.getElementById("line-chart").getContext("2d");
      window.myLine = new Chart(ctx, config);
+     console.log(portfoliocopy)
 }, [loading]);
   return (
     <div className="divBackground  flex justify-evenly w-[75%] h-[23%] my-10 font-[700]  text-[2.5rem] leading-[2.5rem] items-center text-textMain ">
@@ -146,6 +141,7 @@ function AssetInfo() {
 
       <div className='w-[30%] justify-end items-end '>
             <canvas id="line-chart"></canvas>
+            <p className='text-xs text-center'>Days</p>
       </div>
     </div>
   )
@@ -153,12 +149,7 @@ function AssetInfo() {
 const getMeta =async (
   chainId: any, 
   walletAddress: any,
-  // contract_address:any,
-  // token_id:any,
-  // usdc_contract_address:any,
-  // ppg_contract_address:any,
   ) => {
-      // console.log("getMeta")
       var myHeaders = new Headers();
       myHeaders.append("Authorization", "Basic Y2tleV81ZjFjOThmYWQxYjU0MmFjOTUyMzhkZTI2MDg6");
 
@@ -171,15 +162,8 @@ const getMeta =async (
       var url = "https://api.covalenthq.com/v1/{{chain_id}}/address/{{wallet_address}}/portfolio_v2/";;
       url = url.replace("{{chain_id}}", chainId);
       url = url.replace("{{wallet_address}}", walletAddress);;
-      // console.log("url",url);
 
       let jsonReturn = await fetch(url, requestOptions)
-
-      // fetch(url, requestOptions)
-      // .then(response => response.text())
-      // .then(result => console.log(result))
-      // .catch(error => console.log('error', error));
-
       return jsonReturn;
 
 }
