@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React,{useState,useRef,useEffect} from 'react'
 import ProfileInfo from '../components/ProfileInfo'
 import AssetInfo from '../components/AssetInfo'
@@ -7,6 +8,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import {getMeanSubPrice} from '../utils/Functions'
 //@ts-ignore
+
 function Home() {
   const [profilePic,setProfilePic] = useState<any>('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
   const [file,setFile] = useState();
@@ -42,29 +44,8 @@ function Home() {
   }
 
   const saveData = async () => {
-    const blob = new File([JSON.stringify(`<!doctype html>
-    <html lang="en" dir="ltr">
-    <head>
-    <title>ens-redirect</title>
-    <meta charset="utf-8">
-    
-    <meta  http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    
-    
-    </head>
-    <body>
-    <script>location.replace("https://alkynefi.vercelapp.com/${name}")</script>
-    
-    </body>
-    </html>`)], { type: "text/json" });
-    const res = await axios.post('https://api.web3.storage/upload',file, {
-      headers: {
-          Authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEUzMTA5MTQ3NzhFNjZFODI2OWM0ZDY4QjdjODRGQjA0MGI4MmY4N2IiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA0MDY5NDA5MDYsIm5hbWUiOiJ0ZXN0In0.JpiiZaMyBl4MttJOsXbzXO4iHIl-xh5-hhPpCvBjLqA`,
-      },
-    });
-    console.log(res)
 
-    
+
     isSaved(true)
   }
 

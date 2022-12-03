@@ -47,7 +47,7 @@ const getMeta =async (
   var myHeaders = new Headers();
   myHeaders.append("Authorization", "Basic Y2tleV81ZjFjOThmYWQxYjU0MmFjOTUyMzhkZTI2MDg6");
 
-  var requestOptions = {
+  let requestOptions = {
     method: 'GET',
     headers: myHeaders,
     redirect: 'follow'
@@ -62,7 +62,11 @@ const getMeta =async (
   console.log("urll",url);
   console.log("requestOptions");
 
-  let jsonReturn = await fetch(url, requestOptions)
+  let jsonReturn = await fetch(url, {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  })
 
   // fetch(url, requestOptions)
   // .then(response => response.text())
