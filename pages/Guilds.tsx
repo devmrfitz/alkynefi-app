@@ -1,15 +1,21 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import GuildListItem,{GuildListProps} from '../components/GuildListItem';
 import SearchBar from '../components/SearchBar'
-
+import {GetAllAddresses} from '../utils/Functions'
+import {AuthContext,AuthContextProps} from '../context/AuthContext'
 
 function Guilds() {
   const [name,setName] = useState<string>('')
-  const [data,setData] = useState<[GuildListProps]|[]>([])
+  const [data,setData] = useState<any>([])
+  const {getProvider} = useContext<AuthContextProps>(AuthContext)
   console.log(name);
 
   useEffect(() =>{
- //get data
+    const getData = async() => {
+      const res = await GetAllAddresses(getProvider);
+      setData(res);
+    }
+    getData();
   },[])
 
   return (
@@ -17,9 +23,9 @@ function Guilds() {
       <SearchBar name={name} 
                  setName={setName}/>
 
-      {data.filter((item)=>item.name === name)
-           .map((item, index)=>(
-        <GuildListItem key={index} address={''} rank={index}/>
+      {data.filter((item:any)=>item.address === name)
+           .map((item:any, index:number)=>(
+        <GuildListItem key={index} userAddress={''} rank={index}/>
       ))}
     </div>
   )

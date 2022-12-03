@@ -13,7 +13,6 @@ import {AuthContext,AuthContextProps} from "../context/AuthContext";
 
 function Home() {
 
-  const {getProvider} = useContext<AuthContextProps>(AuthContext);
 
   const [profilePic,setProfilePic] = useState<any>('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
   const [ipfsURI,setIpfsURI] = useState<any>('')
@@ -25,7 +24,7 @@ function Home() {
   const [maxAmount,setMaxAmount] = useState('0');
   const [meanSubInvstmt,setMeanSubInvstmt] = useState('0');
   const [capital,setCapital] = useState('0');
-  const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
+  const {account, connect, disconnect,getProvider} = useContext<AuthContextProps>(AuthContext);
 
   const router = useRouter();
 

@@ -1,27 +1,53 @@
-import React,{useState,useEffect} from 'react'
+import React, {useEffect, useContext, useState, useRef}  from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import {GetMeanSubPrice} from '../utils/Functions'
+import {useRouter} from 'next/router';
+import {GetMeanSubPrice,StartFollowing,GetFollowersArray} from '../utils/Functions'
+import {AuthContext,AuthContextProps} from "../context/AuthContext";
 
 
 export type GuildListProps = {
-  address: string,
+  userAddress: string,
   rank: number,
 }
 
-function GuildListItem({address,rank}:GuildListProps) {
+function GuildListItem({userAddress,rank}:GuildListProps) {
+  const {account, connect, disconnect,getProvider} = useContext<AuthContextProps>(AuthContext);
   const [name,setName] = useState('');
-  const [followers,setFollowers] = useState('0');
-  const [capital,setCapital] = useState('0');
+  const [isFollowed,setIsFollowed] = useState(false);
+  const [followers,setFollowers] = useState(0);
+  const [capital,setCapital] = useState(0);
+  const router = useRouter();
+
+  const follow = async () =>{
+    // const res = await StartFollowing
+    router.push('https://staging.push.org/#/channels')
+  }
+
+  useEffect(() => {
+    const getValues = async () =>{
+      const meansub = await GetMeanSubPrice(getProvider);
+      console.log(meansub);
+      setCapital(meansub);
+
+      const res = await GetFollowersArray(getProvider,userAddress)
+      console.log(res.length)
+      setFollowers(res.length)
+    }
+    getValues()
+  },[])
 
   return (
     <div className="divBackground flex justify-around items-center mt-5">
       <div className="flex flex-col justify-center items-center  m-10">
             <Image src={'/User.png'} width={150} height={150} alt="alyne"/>            
-            <Link href="https://staging.push.org/#/channels" 
-                  className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
+            {isFollowed?
+            <div className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
+            Followed</div>:
+            <button onClick={follow} 
+            className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
               Follow
-            </Link>
+            </button>}
       </div>
       
       <div>
