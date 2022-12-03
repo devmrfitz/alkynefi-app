@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
 
-function ProfileInfo() {
-    const [name,setname] = useState('Username')
+function ProfileInfo({name,setname,save}:any) {
     const [input,isInput] = useState(false)
 
     useEffect(() => {
@@ -17,11 +16,11 @@ function ProfileInfo() {
                     value={name}
                     onChange={(e)=>setname(e.target.value)}/>:
             <h1>{name}</h1>}
-            <button onClick={()=>isInput(p=>!p)} className='ml-5'>
+            {!save&&<button onClick={()=>isInput(p=>!p)} className='ml-5'>
                 {input?
                 <Image src={'/tick.svg'} alt='edit' width={50} height={50}/>:
                 <Image src={'/edit.svg'} alt='edit' width={50} height={50}/>}
-            </button>
+            </button>}
         </div>
 
         <div className="flex justify-between font-[200] leading-[2.5rem]">

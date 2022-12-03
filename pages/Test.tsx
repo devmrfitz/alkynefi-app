@@ -9,7 +9,7 @@ function Test() {
   const [notification,setNotification] = useState<any>({})
   const{account,chainId} = useContext<AuthContextProps>(AuthContext);
 
-  const PK = '6f96ba585193612df72bfd61dde17df096c2ad90bfe54fb16b09b20549c427e3'
+  const PK = '...'
   const Pkey = `0x${PK}`;
   const signer = new ethers.Wallet(Pkey);
 
