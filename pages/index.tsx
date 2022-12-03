@@ -2,6 +2,7 @@
 import React, {useEffect, useContext, useState, useRef}  from 'react'
 import ProfileInfo from '../components/ProfileInfo'
 import AssetInfo from '../components/AssetInfo'
+import {useRouter} from 'next/router'
 import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import axios from 'axios'
@@ -26,11 +27,12 @@ function Home() {
   const [capital,setCapital] = useState('0');
   const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
 
+  const router = useRouter();
 
   useEffect(() =>{
     console.log(account)
     if (account===""){
-      Router.push('/BlurHome')
+      router.push('/BlurHome')
   }
       const getMean = async() => {
         const val = await GetMeanSubPrice(getProvider);
