@@ -76,7 +76,22 @@ export async function GetAllAddresses(getProvider  : any) {
 }
 
 
-//get all addresses
+export async function GetAlkyneWallet(getProvider  : any,  userAddress : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
 
 //get net investment
 
