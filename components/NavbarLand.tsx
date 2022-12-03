@@ -24,7 +24,7 @@ function NavbarLand() {
         <Image src={'/alkyne.png'} width={50} height={50} alt="alyne"/>
       </Link>
 
-      <a className="button p-2 " href={'/Home'}>
+      <a className="button p-2 " href={'/'}>
         Launch
       </a>
 
