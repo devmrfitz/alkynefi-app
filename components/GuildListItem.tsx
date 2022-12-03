@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import {GetMeanSubPrice} from '../utils/Functions'
+
 
 export type GuildListProps = {
   address: string,
@@ -11,10 +13,6 @@ function GuildListItem({address,rank}:GuildListProps) {
   const [name,setName] = useState('');
   const [followers,setFollowers] = useState('0');
   const [capital,setCapital] = useState('0');
-
-  useEffect(() => {
-
-  },[])
 
   return (
     <div className="divBackground flex justify-around items-center mt-5">

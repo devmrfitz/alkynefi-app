@@ -36,7 +36,7 @@ function Home() {
   return (
     <div className="flex-1 ">
       <div className="absolute z-50">
-      <NavbarOnlyLogin/>
+      <Navbar/>
       </div>
       <div className="absolute z-20 h-screen w-screen flex-1 flex items-center justify-center text-center ">
       <p className="text-4xl ">

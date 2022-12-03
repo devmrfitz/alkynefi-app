@@ -9,6 +9,10 @@ import Image from 'next/image'
 import {getMeanSubPrice} from '../utils/Functions'
 import {AuthContext,AuthContextProps} from "../context/AuthContext";
 import Router from 'next/router'
+import {getMeanSubPrice,Signup} from '../utils/Functions'
+import { AuthContext,AuthContextProps } from '../context/AuthContext'
+
+const  {getProvider}  = useContext<AuthContextProps>(AuthContext);
 //@ts-ignore
 
 function Home() {
@@ -24,12 +28,17 @@ function Home() {
   const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
 
 
-
   useEffect(() =>{
     console.log(account)
     if (account===""){
       Router.push('/BlurHome')
-  }},[])
+  }
+      const getMean = async() => {
+        const val = await getMeanSubPrice(getProvider);
+        setMeanSubInvstmt(val);
+      }
+      getMean()
+  },[])
 
   const uploadProfilePic = async (e:any) => {
     const reader = new FileReader();
@@ -49,9 +58,9 @@ function Home() {
   }
 
   const saveData = async () => {
-
-
-    isSaved(true)
+    // let 
+    // await Signup(getProvider,)
+    // isSaved(true)
   }
 
 

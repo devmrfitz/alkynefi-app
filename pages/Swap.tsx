@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-function Test() {
+function Swap() {
  return (
     <div className="relative h-screen overflow-hidden  bg-no-repeat	bg-fixed px-52">
       <div className="glassDiv flex flex-col flexbold-1 pt-10 mt-[100px] mx-[400px] justify-center border rounded-3xl">
@@ -81,4 +81,4 @@ function TradeTokenDetails(
 
     )
 }
-export default Test
+export default Swap

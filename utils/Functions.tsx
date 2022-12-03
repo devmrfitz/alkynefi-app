@@ -59,6 +59,65 @@ export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, 
     return out;
 }
 
+export async function GetAllAddresses(getProvider  : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.getRegisteredUsers();
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
 
+
+export async function GetAlkyneWallet(getProvider  : any,  userAddress : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
+export async function GetFollowersArray(getProvider  : any,  userAddress : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.followersArray();
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
+
+
+//get net investment - portfolio total value
+
+//get max invested asset
+
+// get number of followers 
+
+//follow function
+
+//swap functions
 
 
