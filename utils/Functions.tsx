@@ -1,11 +1,11 @@
+//@ts-ignore
 import React, { useContext, useEffect, useState } from "react";
 import web3 from "web3";
 import { ethers } from "ethers";
 import { AuthContext,AuthContextProps } from "../context/AuthContext";
-//@ts-ignore
-import AlkyneWalletContractABI from '../contracts/AlkyneWalletContract.json';
-import OrchestratorContractABI from '../contract/Orchestrator.json';
-import LensProfileContractABI from '../contracts/LensProfileContract.json';
+import AlkyneWalletContractABI from '../contract/AlkyneWalletContractABI.json';
+import OrchestratorContractABI from '../contract/OrchestratorContractABI.json';
+import LensProfileContractABI from '../contract/LensProfileContractABI.json';
 
 
 const useBlockchain = async (getProvider:any) =>{
