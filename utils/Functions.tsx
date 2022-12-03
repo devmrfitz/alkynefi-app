@@ -3,9 +3,9 @@ import web3 from "web3";
 import { ethers } from "ethers";
 import { AuthContext,AuthContextProps } from "../context/AuthContext";
 //@ts-ignore
-import AlkyneWalletContractABI from '../contracts/AlkyneWalletContract.json'
-import OrchestratorContractABI from '../contract/Orchestrator.json'
-import LensProfileContractABI from '../contracts/LensProfileContract.json'
+import AlkyneWalletContractABI from '../contracts/AlkyneWalletContract.json';
+import OrchestratorContractABI from '../contract/Orchestrator.json';
+import LensProfileContractABI from '../contracts/LensProfileContract.json';
 
 
 const useBlockchain = async (getProvider:any) =>{
@@ -13,17 +13,17 @@ const useBlockchain = async (getProvider:any) =>{
     const signer = provider?.getSigner();
     let OrchestratorContract:any = new ethers.Contract(
         "",
-        ProfileContract.abi,
+        OrchestratorContractABI.abi,
         signer
     );
     let WalletContract:any = new ethers.Contract(
         "",
-        AlkyneWalletContract.abi,
+        AlkyneWalletContractABI.abi,
         signer
     );
     let LensProfileContract:any = new ethers.Contract(
         "",
-        AlkyneWalletContract.abi,
+        LensProfileContractABI.abi,
         signer
     );
 
