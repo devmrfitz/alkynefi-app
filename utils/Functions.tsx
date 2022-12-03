@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { AuthContext,AuthContextProps } from "../context/AuthContext";
 //@ts-ignore
 import AlkyneWalletContract from '../contracts/AlkyneWalletContract.json'
+import Orchestrator from '../contract/Orchestrator.json'
 
 const { account, 
         getProvider,
@@ -12,7 +13,7 @@ const { account,
 const useBlockchain = async () =>{
     const provider = await getProvider();
     const signer = provider?.getSigner();
-    let ProfileContract:any = new ethers.Contract(
+    let Orchestrator:any = new ethers.Contract(
         account!,
         // ProfileContract.abi,
         signer
@@ -23,7 +24,7 @@ const useBlockchain = async () =>{
         signer
     );
 
-    return [provider, signer, ProfileContract, WalletContract];
+    return [provider, signer, Orchestrator, WalletContract];
 }
 
 export const getMeanSubPrice = async () => {
@@ -45,34 +46,23 @@ export const getMeanSubPrice = async () => {
     return value;
 } 
 
-// const getTotalInvestment = async () => {
+export const signup = async () => {
+    const provider = await getProvider();
+    const signer = provider?.getSigner();
+    let AlkyneOrchestrator:any = new ethers.Contract(
+        account!,
+        Orchestrator.abi,
+        signer
+    );
+    let value = -1;
+    try {
+        let count = await AlkyneOrchestrator.createProfile();
+        value = parseInt(BigInt(count._hex).toString(10));
+      } catch (err) {
+        console.log(err, "error");
+        alert(err.message);
+    }
+    return value;
+}
 
-// }
 
-// const getMaxInvestedToken = async() => {
-
-// }
-
-
-// const follow = async () => {
-
-// }
-
-// const getAllGuilds = async () => {
-
-// }
-
-// const createProfile = async () => {
-
-// }
-// const follow = async () => {
-
-// }
-
-// const getAllGuilds = async () => {
-
-// }
-
-// const createProfile = async () => {
-
-// }

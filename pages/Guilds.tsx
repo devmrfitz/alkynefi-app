@@ -19,12 +19,8 @@ function Guilds() {
 
       {data.filter((item)=>item.name === name)
            .map((item, index)=>(
-        <GuildListItem name={item.name}
-                      followers={item.followers}
-                      capital={item.capital}
-                      rank={item.rank}
-                      image={item.image}
-                      key={index}/>
+        <GuildListItem address={''}
+                        rank={index}/>
       ))}
     </div>
   )
