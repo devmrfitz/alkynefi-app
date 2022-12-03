@@ -8,7 +8,6 @@ const { account,
         getProvider,
         chainId} = useContext<AuthContextProps>(AuthContext);
 
-
 const useBlockchain = async () =>{
     const provider = await getProvider();
     const signer = provider?.getSigner();
@@ -26,10 +25,18 @@ const useBlockchain = async () =>{
     return [provider, signer, ProfileContract, WalletContract];
 }
 
-
-
 const getMeanSubPrice = async () => {
-
+    const [provider, signer, ProfileContract, WalletContract] =
+    await useBlockchain();
+    let value = -1;
+    try {
+        let count = await ProfileContract.getMeanSubscriberInvestment();
+        value = parseInt(BigInt(count._hex).toString(10));
+      } catch (err) {
+        console.log(err, "error");
+        alert(err.message);
+    }
+    return value;
 } 
 
 const getTotalInvestment = async () => {
@@ -37,5 +44,17 @@ const getTotalInvestment = async () => {
 }
 
 const getMaxInvestedToken = async() => {
+
+}
+
+const follow = async () => {
+
+}
+
+const getAllGuilds = async () => {
+
+}
+
+const createProfile = async () => {
 
 }
