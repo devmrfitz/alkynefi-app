@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return(
     <>
       <AuthProvider>
-        {path==='/Landing'?<NavbarLand/>:<Navbar/>}
+        {path=='/BlurHome'?null:(path==='/Landing'?<NavbarLand/>:<Navbar/>)}
         <Component {...pageProps} />
       </AuthProvider>
     </>

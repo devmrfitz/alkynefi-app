@@ -1,12 +1,16 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef, useContext, useEffect} from 'react'
 import ProfileInfo from '../components/ProfileInfo'
 import AssetInfo from '../components/AssetInfo'
 import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import Navbar from '../components/Navbar'
 import NavbarOnlyLogin from '../components/NavbarOnlyLogin'
+import {AuthContext,AuthContextProps} from "../context/AuthContext";
+import Router from 'next/router'
+
 
 function Home() {
+  const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
   const [profilePic,setProfilePic] = useState<any>('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
   const [file,setFile] = useState();
   const imageUploader = useRef();
@@ -24,9 +28,16 @@ function Home() {
     // console.log(res)
   }
 
+  useEffect(() => {
+    if (account!=="" ){
+      Router.push('/')
+    }},[account])
+
   return (
     <div className="flex-1 ">
+      <div className="absolute z-50">
       <NavbarOnlyLogin/>
+      </div>
       <div className="absolute z-20 h-screen w-screen flex-1 flex items-center justify-center text-center ">
       <p className="text-4xl ">
         Login To Continue

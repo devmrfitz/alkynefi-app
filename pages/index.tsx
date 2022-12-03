@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React,{useState,useRef,useEffect} from 'react'
+import React,{useState,useRef,useEffect,useContext} from 'react'
 import ProfileInfo from '../components/ProfileInfo'
 import AssetInfo from '../components/AssetInfo'
 import CurrentValue from '../components/CurrentValue'
@@ -7,6 +7,8 @@ import Graph from '../components/Graph'
 import axios from 'axios'
 import Image from 'next/image'
 import {getMeanSubPrice} from '../utils/Functions'
+import {AuthContext,AuthContextProps} from "../context/AuthContext";
+import Router from 'next/router'
 //@ts-ignore
 
 function Home() {
@@ -19,12 +21,15 @@ function Home() {
   const [maxSubVal,setMaxSubVal] = useState('0');
   const [meanSubInvstmt,setMeanSubInvstmt] = useState('0');
   const [capital,setCapital] = useState('0');
+  const {account, connect, disconnect} = useContext<AuthContextProps>(AuthContext);
+
 
 
   useEffect(() =>{
-//is user saved
-
-  },[])
+    console.log(account)
+    if (account===""){
+      Router.push('/BlurHome')
+  }},[])
 
   const uploadProfilePic = async (e:any) => {
     const reader = new FileReader();
