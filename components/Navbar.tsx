@@ -25,8 +25,8 @@ function Navbar() {
       </Link>
 
       <div className="Mulish font-[200] flex w-[40%] justify-evenly">
-        <Link href={'/Home'}>
-          <p style={{color:path==='/Home'?'#d1318c':'#f1f1f1'}}>Home</p>
+        <Link href={'/'}>
+          <p style={{color:path==='/'?'#d1318c':'#f1f1f1'}}>Home</p>
         </Link>
         <Link href={'/Leaderboard'}>
           <p style={{color:path==='/Leaderboard'?'#d1318c':'#f1f1f1'}}>Leaderboard</p>
