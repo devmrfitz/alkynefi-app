@@ -18,16 +18,16 @@ function Test() {
         <div className='flex-1 flex flex-wrap mt-10'>
             <TradeTokenDetails items={
                 [
-                {'Price': '0.324'},
-                {'per': 'ETH'},
-                {'slippage': '0.1%'},
+                ['Price', '0.324'],
+                ['per', 'ETH'],
+                ['slippage', '0.1%'],
                 ]
             }/>
             <TradeTokenDetails items={
                 [
-                {'Maximum sold': '27.24 ANUV'},
-                {'Price Impact': '10.2%'},
-                {'Liquidity Provider Fee': '0.05394 ANUV'},
+                ['Maximum sold', '27.24 ANUV'],
+                ['Price Impact', '10.2%'],
+                ['Liquidity Provider Fee', '0.05394 ANUV'],
                 ]
             }/>
         </div>
@@ -69,11 +69,11 @@ function TradeTokenDetails(
     return (
     <div className='flex flex-1 flex-col border border-[#D1318C] rounded-xl mx-10 mb-5 pt-5'>
         {items.map(element => {
-            console.log(Object.keys(element)[0]);
+            console.log(element[0]);
             return (
                     <div className="flex flex-1 justify-between px-10 pb-5 ">
-                        <p>{Object.keys(element)[0]}</p>
-                        <p>{Object.values(element)[0]}</p>
+                        <p>{element[0]}</p>
+                        <p>{element[1]}</p>
                     </div>
             )
         })}
