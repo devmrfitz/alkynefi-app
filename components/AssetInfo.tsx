@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React,{useEffect} from 'react'
 import Image from 'next/image'
 import Chart from "chart.js";

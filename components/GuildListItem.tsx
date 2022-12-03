@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export type GuildListProps = {
   address: string,
-  rank: number
+  rank: number,
 }
 
 function GuildListItem({address,rank}:GuildListProps) {
