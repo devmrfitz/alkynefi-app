@@ -1,6 +1,4 @@
 import React,{useEffect} from 'react'
-
-import GuildListItem from '../components/GuildListItem'
 function Covalent() {
   // getMeta("80001","0xa3402ffc115cea35f0348b4abcc7532aed59b03f");;
   let [portfolioValue, setPortfolioValue] = React.useState([{}]);
