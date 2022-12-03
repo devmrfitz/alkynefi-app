@@ -59,6 +59,22 @@ export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, 
     return out;
 }
 
+export async function GetAllAddresses(getProvider  : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.getRegisteredUsers();
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
 
 //get all addresses
 
