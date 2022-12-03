@@ -110,6 +110,24 @@ export async function GetFollowersArray(getProvider  : any,  userAddress : any) 
 
 
 
+export async function StartFollowing(getProvider  : any,  userAddress : any, profileids : any, datas : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await LensProfileContract.follow(profileids, datas);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
+
+
 //get net investment - portfolio total value
 
 //get max invested asset
