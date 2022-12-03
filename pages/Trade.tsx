@@ -1,5 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
+import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 function Trade() {
  return (
     <div className="relative h-screen overflow-hidden  bg-background bg-cover bg-no-repeat	bg-fixed px-52">
@@ -37,6 +39,10 @@ function Trade() {
         </div>
             
       </div>
+      <div className="Uniswap flex flex-1 justify-between mt-10">
+        <SwapWidget width="40%" />
+        <SwapWidget width="40%" />
+    </div>
     </div>
   )
 }
