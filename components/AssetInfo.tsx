@@ -9,16 +9,31 @@ function AssetInfo() {
   let [loading, setLoading] = React.useState(true);
   let portfolio=[];
   let portfoliocopy=[];
+
+  let [highestInvestment, setHighestInvestment] = React.useState("");
+  let [logo, setLogo] = React.useState("");
+  let [increaseValue, setIncreaseValue] = React.useState(0);
   useEffect(() => { 
     portfolio=[];
     portfoliocopy=[];
+    getHighestInvestment("80001","0xd8a8dd0177e0b4645ba92ab6a3e6ffbb0e18a17b")
+    // getHighestInvestment("1","0xab5801a7d398351b8be11c439e05c5b3259aec9b")
+    .then(response => response.json())
+    .then(result => {
+      console.log("ether"+result.data.items[0].contract_name);
+      setHighestInvestment(result.data.items[0].contract_ticker_symbol);
+      setLogo(result.data.items[0].logo_url);
+      setIncreaseValue((result.data.items[0].quote_rate-result.data.items[0].quote_rate_24h)/result.data.items[0].quote_rate_24h*100);
+    })
+
+    
+
     getMeta("80001","0xd8a8dd0177e0b4645ba92ab6a3e6ffbb0e18a17b")
    .then((response) => response.json())
    .then((json) => {
        setPortfolioValue(json);
    }).then(()=>{
        setLoading(false);
-
    })
    !loading && portfolioValue.data.items.map((item:any,index)=>{
        if (index==0){
@@ -124,20 +139,21 @@ function AssetInfo() {
      };
      var ctx = document.getElementById("line-chart").getContext("2d");
      window.myLine = new Chart(ctx, config);
-     console.log(portfoliocopy)
+    //  console.log(portfoliocopy)
 }, [loading]);
   return (
     <div className="divBackground  flex justify-evenly w-[75%] h-[23%] my-10 font-[700]  text-[2.5rem] leading-[2.5rem] items-center text-textMain ">
       <div className='w-[20%] h-[70%] flex flex-col justify-between items-start'>
-        <div>
-          <Image src="/coin.png" width={100} height={100} alt="coin"/>
+        <div className=''>
+          <Image src={logo} width={150} height={150} alt="coin"/>
         </div>   
-        <h2 className="opacity-70">BNB</h2>
+        <h2 className="opacity-70 text-center pl-5">{highestInvestment}</h2>
       </div>
 
       <div className='w-[30%] h-[70%] flex flex-col opacity-70 justify-between items-start'>
         <h2>Primary Invested Asset</h2>
-        <h2 className='text-[#A6F2A5]'>+1.77%</h2>
+        {/* <h2 className='text-[#A6F2A5]'>+1.77%</h2> */}
+        <h2 className='text-[#A6F2A5]'>+{Math.round(increaseValue*100)/100}%</h2>
       </div>
 
       <div className='w-[30%] justify-end items-end '>
@@ -165,6 +181,29 @@ const getMeta =async (
       url = url.replace("{{wallet_address}}", walletAddress);;
 
       let jsonReturn = await fetch(url, requestOptions)
+      return jsonReturn;
+
+}
+
+
+const getHighestInvestment = async(
+  chainId: any,
+  walletAddress: any,
+) => {
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic Y2tleV81ZjFjOThmYWQxYjU0MmFjOTUyMzhkZTI2MDg6");
+      
+      var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+      };
+
+      var url = "https://api.covalenthq.com/v1/{{chain_id}}/address/{{wallet_address}}/balances_v2/"
+      url = url.replace("{{chain_id}}", chainId);
+      url = url.replace("{{wallet_address}}", walletAddress);;
+      let jsonReturn = await fetch(url, requestOptions)
+      
       return jsonReturn;
 
 }
