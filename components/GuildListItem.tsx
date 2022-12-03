@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-
+import Link from 'next/link';
 export type GuildListProps = {
   name: string,
   followers: number,
@@ -12,14 +12,18 @@ export type GuildListProps = {
   }
 }
 
+
+
+
 function GuildListItem({name, followers, capital, rank, image}:GuildListProps) {
   return (
     <div className="divBackground flex justify-around items-center mt-5">
       <div className="flex flex-col justify-center items-center  m-10">
             <Image src={'/User.png'} width={150} height={150} alt="alyne"/>            
-            <button className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
+            <Link href="https://staging.push.org/#/channels" 
+                  className="bg-[#D1318C]  p-1 mt-1 active:bg-secondary hover:shadow-lg rounded-lg w-[80%]">
               Follow
-            </button>
+            </Link>
       </div>
       
       <div>

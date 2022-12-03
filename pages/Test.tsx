@@ -6,23 +6,24 @@ import * as ethers from "ethers";
 
 function Test() {
   const [address,setAddress] = useState<string>('')
-  const [notification,setNotification] = useState<any>(null)
-  const{account} = useContext<AuthContextProps>(AuthContext)
+  const [notification,setNotification] = useState<any>({})
+  const{account,chainId} = useContext<AuthContextProps>(AuthContext);
 
-  const PK = ''
+  const PK = '6f96ba585193612df72bfd61dde17df096c2ad90bfe54fb16b09b20549c427e3'
   const Pkey = `0x${PK}`;
   const signer = new ethers.Wallet(Pkey);
 
   const reciveResponse = async () => {
     const notifications = await PushAPI.user.getFeeds({
-      user: 'eip155:5:0x6C59eC34920Eb91c408A31c871532859787eBFE8', // user address in CAIP
+      user: 'eip155:'+chainId+':'+address, // user address in CAIP
       env: 'staging'
     });
+    setNotification(notifications[0])
     console.log(notifications)
-    setNotification(notifications)
   }
 
   const sendNotification = async() => {
+    PushAPI.user.getSubscriptions
     try {
       const apiResponse = await PushAPI.payloads.sendNotification({
         signer,
@@ -38,8 +39,8 @@ function Test() {
           cta: '',
           img: ''
         },
-        recipients: 'eip155:5:0x6C59eC34920Eb91c408A31c871532859787eBFE8', // recipient address
-        channel: 'eip155:5:0x6C59eC34920Eb91c408A31c871532859787eBFE8', // your channel address
+        recipients: 'eip155:'+chainId+':'+address, // recipient address
+        channel: 'eip155:'+chainId+':'+account, // your channel address
         env: 'staging'
       });
       
@@ -54,12 +55,14 @@ function Test() {
   return (
     <div className="relative h-screen overflow-hidden flex flex-col items-center justify-center  bg-no-repeat	bg-fixed px-52">
       <p>from: {account}</p>
-      <input value={address} onChange={(e)=>setAddress(e.target.value)} placeholder="to: " className="my-10"/>
+      <p>to: {address}</p>
+      <p>chainId: {chainId}</p>
+      <input value={address} onChange={(e)=>setAddress(e.target.value)} placeholder="to: " className="my-10 w-[50%]"/>
       <button className="bg-secondary p-3 rounded-lg " onClick={sendNotification}>send notif</button>
 
       <p className="my-10">Your Notification</p>
       <button className="bg-secondary p-3 rounded-lg " onClick={reciveResponse}>rcv notif</button>
-      <div>{notification}</div>
+      <div>{notification.message}</div>
     </div>
   )
 }

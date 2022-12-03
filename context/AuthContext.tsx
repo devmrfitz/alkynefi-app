@@ -1,12 +1,13 @@
 import React, { useEffect, useState, createContext, } from "react";
 import { ethers, providers } from "ethers";
 import Web3Modal from "web3modal";
-
+// @ts-ignore
 export type AuthContextProps = {
     account: string | undefined,
     connect: ()=>void,
     disconnect: ()=>void,
     getProvider: ()=>void,
+    chainId:any,
 };
 
 type props = {
@@ -22,6 +23,8 @@ export const AuthProvider = ({ children }: props) => {
     const connect = async () => {
         const provider = await web3Modal?.connect();
         const ethersProvider = new providers.Web3Provider(provider);
+        const id  =  (await ethersProvider.getNetwork()).chainId.toString();
+        setChainId(id);
         const userAddress = await ethersProvider.getSigner().getAddress();
         const data =  ethersProvider.getSigner();
         console.log(data);
@@ -41,10 +44,12 @@ export const AuthProvider = ({ children }: props) => {
     const getProvider = async () => {
         const provider = await web3Modal?.connect();
         const ethersProvider = new providers.Web3Provider(provider);
+        return new ethers.providers.Web3Provider(provider);
     }
 
     const [web3Modal, setWeb3Modal] = useState<Web3Modal>()
     const [account, setAccount] = useState<string | undefined>("")
+    const [chainId, setChainId] = useState<any>()
 
     useEffect(() => {
         const modal = new Web3Modal({providerOptions:{
@@ -57,6 +62,7 @@ export const AuthProvider = ({ children }: props) => {
         if(web3Modal && web3Modal.cachedProvider){
           connect();
         }
+    
       }, [web3Modal])
 
     return (
@@ -66,6 +72,7 @@ export const AuthProvider = ({ children }: props) => {
                 connect,
                 disconnect,
                 getProvider,
+                chainId,
             }}
         >
             {children}

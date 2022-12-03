@@ -37,6 +37,9 @@ function Navbar() {
         <Link href={'/Trade'}>
           <p style={{color:path==='/Trade'?'#d1318c':'#f1f1f1'}}>Trade</p>
         </Link>
+        <Link href={'/Notifs'}>
+          <p style={{color:path==='/Notifs'?'#d1318c':'#f1f1f1'}}>Notifications</p>
+        </Link>
       </div>
 
       <button className="button p-2" onClick={account?disconnect:connect}>
