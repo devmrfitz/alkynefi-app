@@ -2006,33 +2006,6 @@ let  LensHubContractABI = [
 	}
 ]
 
-
-// {
-//     "lensHub proxy": "0x51CF51be65E1B820853E527b3f1D824D29307659", needed 
-//     "lensHub impl:": "0x6575be1A4DE6EEB9A8573906E7313cB90e8A0fA6",
-//     "publishing logic lib": "0x5e57E73F257d3e034a550EdAF17f8ED5B32EB3C8",
-//     "interaction logic lib": "0x6629b8Da78bCe884613B0CE4956204c2522Dc398",
-//     "follow NFT impl": "0x2a7e99b9f1e0c781cbc0adb03fbc7bc1b54d5358",
-//     "collect NFT impl": "0xfffdcb186d5bbff7274608d7e14d0b847238364a",
-//     "currency": "0x87664A91e7059A2D88e55e3a9E82015Ddb766Ad8",
-//     "lens periphery": "0x25517C60d60889dD754009604b8dAE37Ee6044f0",
-//     "module globals": "0x7aE29bCaaFf01eD2d60D3f7B2A7dA9843C67E966",
-//     "fee collect module": "0xabae2Ab2229bdb7fD272183145d64A4b7020362D",
-//     "limited fee collect module": "0x166091c8A7E4Dc328373a3f9DCBA690845aF9e27",
-//     "timed fee collect module": "0x9C464A2FAA5BbcE231Bd3437987C4E3D7c0Cc369",
-//     "limited timed fee collect module": "0xf45257dE8e0C7489957D139D493723E63EdC0D5b",
-//     "revert collect module": "0x2f491269712b3E2ABCD0b34D78142982EF5c834a",
-//     "free collect module": "0x65010077E2965db895A3b536170c8E5a5dDdA575",
-//     "fee follow module": "0x0C711C44e29F0e588B19585499668A5df66701DC",
-//     "profile follow module": "0xCF73362780857cdB13f4783981aB7bF3c3EAA943",
-//     "revert follow module": "0xC69c6f3c733c583d2118035609F4Ae8e0EDfAccb",
-//     "follower only reference module": "0x0D1Ea0f46f8Beaf5709AE41A28b4fdCC2f26caf4",
-//     "UI data provider": "0xfc6edd01415029511aD7f5F73E1Fc31d84e1351b",
-//     "Profile creation proxy": "0x55121684a98bE8919746A1537438aAa2539daDfd"
-//   }
-
-
-
 const useBlockchain = async (getProvider:any) =>{
     const provider = await getProvider();
     const signer = provider?.getSigner();
