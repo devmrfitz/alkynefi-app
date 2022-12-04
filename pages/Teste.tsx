@@ -3,11 +3,11 @@ import {AuthContext,AuthContextProps} from "../context/AuthContext";
 import { GetAlkyneWallet, CreateProfileHub } from '../utils/Functions';
 export default function Teste() {
 
-  const {getProvider} = useContext<AuthContextProps>(AuthContext);
+  const {getProvider,account,chainId} = useContext<AuthContextProps>(AuthContext);
 
   async function handler(){
     console.log("handler")
-    let x = await  CreateProfileHub(getProvider);
+    let x = await  CreateProfileHub(getProvider,account);
     console.log(x," x new")
   }
   return (
