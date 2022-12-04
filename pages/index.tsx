@@ -54,13 +54,13 @@ function Home() {
     !loading && portfolioValue.map((item:any)=>{
       console.log(item.quote_rate*item.balance/1e18);
       // console.log(portfolioValueUSD);
-      value+= item.quote_rate*item.balance/1e18;    
+      value+= item.quote_rate*item.balance/1e18;
       setCapital(Math.round(value*100)/100);
     });
   }, [loading]);
       // getMean()
       //get save
- 
+
 
 
   const uploadProfilePic = async (e:any) => {
@@ -79,7 +79,7 @@ function Home() {
      });
      console.log(`https://ipfs.io/ipfs/${res.data.cid}`)
      setProfilePic(`https://ipfs.io/ipfs/${res.data.cid}`)
-     setIpfsURI(`https://ipfs.io/ipfs/${res.data.cid}`)
+     setIpfsURI(`ipfs://${res.data.cid}`)
      console.log('set hogyi uri')
   }
 
@@ -108,9 +108,14 @@ function Home() {
   }
 
   const saveData = async () => {
-    let userAddress=account
-    const result = await GetAlkyneWalletAddress(getProvider,userHandle,userAddress)
-    isSaved(true)    
+    let userAddress=account;
+    if (!ipfsURI) {
+        alert("Please upload a profile picture or wait for the upload to complete");
+        return;
+    }
+    const result = await GetAlkyneWalletAddress(getProvider,userHandle,userAddress, ipfsURI)
+    isSaved(true)
+    console.log(res);
     console.log(result);
   }
 
@@ -121,21 +126,21 @@ function Home() {
 
       <label className='flex flex-col justify-center items-center glassCircle w-[10rem] h-[10rem] absolute left-[20%]'>
           <div className="relative overflow-hidden rounded-md" >
-              <img  className='w-[10vw] h-[10vw] rounded-full' 
+              <img  className='w-[10vw] h-[10vw] rounded-full'
                     src={profilePic}/>
           </div>
-          {!save&&<input  ref={imageUploader} 
-                          type="file" 
-                          onChange={uploadProfilePic} 
+          {!save&&<input  ref={imageUploader}
+                          type="file"
+                          onChange={uploadProfilePic}
                           className="hidden"/> }
       </label>
 
-      {!save&&<button className="bg-secondary p-3 rounded-lg absolute left-[22%] top-[28%]" 
+      {!save&&<button className="bg-secondary p-3 rounded-lg absolute left-[22%] top-[28%]"
                   onClick={saveData}>
                   Save Data
       </button>}
 
-      <ProfileInfo name={userHandle} 
+      <ProfileInfo name={userHandle}
                    setname={setUserHandle}
                    save={save}
                    capital={capital}/>
@@ -147,7 +152,7 @@ function Home() {
             className='max-w-[26rem] h-[3rem] p-2 border rounded-md'
             value={maxAmount}
             onChange={(e)=>setMaxAmount(e.target.value)}/>:
-            
+
             <h1>${maxAmount}</h1>}
 
             {!save&&<button onClick={()=>isInput(p=>!p)} className='ml-5'>
@@ -161,7 +166,7 @@ function Home() {
 
       <AssetInfo chainId={chainId} address={account}/>
       <h2 className='relative z-0 mb-[-2.5rem] leading-[5rem] text-[#974f83] opacity-75 font-[900] text-[7.75rem]'>Current Value</h2>
-      <CurrentValue meanSubInvstmt={meanSubInvstmt} 
+      <CurrentValue meanSubInvstmt={meanSubInvstmt}
                     capital={capital}/>
 
     </div>
@@ -169,7 +174,7 @@ function Home() {
 }
 
 const getMeta =async (
-  chainId: any, 
+  chainId: any,
   walletAddress: any,
   // contract_address:any,
   // token_id:any,

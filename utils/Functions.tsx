@@ -7,6 +7,7 @@ import AlkyneWalletContractABI from '../contract/AlkyneWalletContractABI.json';
 // import OrchestratorContractABI from '../contract/OrchestratorContractABI.json';
 // import LensHubContractABI from '../contract/LensHubContractABI';
 import { AbiCoder, defaultAbiCoder } from "ethers/lib/utils";
+import {getConnectedUser} from "@pushprotocol/restapi/src/lib/chat/helpers";
 
 
 let OrchestratorContractABI = [
@@ -276,6 +277,8 @@ let OrchestratorContractABI = [
 		"type": "function"
 	}
 ]
+
+
 let  LensHubContractABI = [
 	{
 		"inputs": [
@@ -2056,16 +2059,16 @@ const useBlockchain = async (getProvider:any) =>{
 }
 
 export const GetMeanSubPrice = async (getProvider : Function) => {
-    const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
-    let value = -1;
-    try {
-        let count = await WalletContract.getMeanSubscriberInvestment();
-        value = parseInt(BigInt(count._hex).toString(10));
-      } catch (err: any) {
-        console.log(err, "error");
-        alert(err.message);
-    }
-    return value;
+    // const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
+    // let value = -1;
+    // try {
+    //     let count = await WalletContract.getMeanSubscriberInvestment();
+    //     value = parseInt(BigInt(count._hex).toString(10));
+    //   } catch (err: any) {
+    //     console.log(err, "error");
+    //
+    // }
+    // return value;
 }
 
 export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, maxAmount  :any) {
@@ -2078,7 +2081,7 @@ export async function Signup(getProvider  : any,userHandle: any, ipfsURI : any, 
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2093,7 +2096,7 @@ export async function GetAllAddresses(getProvider  : any) {
         out = count;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2110,7 +2113,7 @@ export async function GetAlkyneWallet(getProvider  : any,  userAddress : any) {
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2126,7 +2129,7 @@ export async function GetFollowersArray(getProvider  : any,  userAddress : any) 
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2144,7 +2147,7 @@ export async function StartFollowing(getProvider  : any,  userAddress : any, pro
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2161,7 +2164,7 @@ export async function GetProfileIdByUserName(getProvider  : any,  userHandle : a
         out = x;
         } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
@@ -2198,74 +2201,53 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
+
         out = err.message;
     }
     return out;
 }
 
-export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
+export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any, ipfsURI: string) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
-    try {
-        let count = await OrchestratorContract.createProfile1();
-        console.log(count," x")
-        out = count;
-      } catch (err :any) {
-        console.log(err, "error");
-        out = err.message;
-    }
-
-    try {
-        let count2 = await OrchestratorContract.getAlkyneWallet(userAddress);
+        let count2 = await OrchestratorContract.createProfile1();
         console.log(count2," x")
+
+        let alkyneAddress = await OrchestratorContract.getAlkyneWallet(userAddress);
         out = count2;
-      } catch (err :any) {
-        console.log(err, "error");
-        out = err.message;
-    }
+        console.log(alkyneAddress," alkyneAddress")
 
 // out have the getAlkyneWallet
 
     let out2 = "";
 
     const val =  {
-        to: "0x67C1dbA6F01fe836E6BB4c8B883392E6CfE92aa9",
-        handle: "sddsfvdfvab",
-        imageURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
-        followModule: '0x976f486319d6D6248e966D9aC29F74af4f4D6BB7',
+        to: userAddress,
+        handle: userHandle,
+        imageURI: ipfsURI,
+        followModule: '0xF9E1B0bf860D68918eD6368C6FE584FBE4Bcde54',
         followModuleInitData: defaultAbiCoder.encode(
             ['address', 'address', 'address', 'uint256'],
             [
             "0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42",
-                userAddress,
-            out,
-            100,
+			userAddress,
+            alkyneAddress,
+            "100000000000000000",
             ]
         ),
-        followNFTURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
+        followNFTURI: ipfsURI,
     };
 
-    try {
-        let count = await LensHubContract.createProfile(val);
-        let x = count.wait();
-        console.log(x," x")
-        out2 = x;
-      } catch (err :any) {
-        console.log(err, "error");
-        out2 = err.message;
-    }
+	let count = await LensHubContract.createProfile(val);
+	let x = count.wait();
+	console.log(x," x")
+	out2 = x;
 
 
-    try {
-        let count = await OrchestratorContract.createProfile2(userHandle);
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
-      } catch (err :any) {
-        console.log(err, "error");
-        out = err.message;
-    }
+	count = await OrchestratorContract.createProfile2(userHandle);
+	x = count.wait();
+	console.log(x," x")
+	out = x;
 }
 
 

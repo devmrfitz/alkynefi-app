@@ -43,7 +43,7 @@ async function BuyNFT(getProvider, connectedAccount) {
     return true;
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
     return false;
   }
   return false;
@@ -64,7 +64,7 @@ async function GetEngagementPoints(getProvider, connectedAccount) {
     // need to return true
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
     // need to return false
   }
 }
@@ -86,7 +86,7 @@ async function UpgradeNFT(getProvider, connectedAccount, nftId, newlevel) {
     console.log(tx2, "tx2");
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
   }
   return false;
 }
@@ -102,7 +102,7 @@ async function CheckLevel(getProvider, nftId) {
     level = parseInt(BigInt(count._hex).toString(10));
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
   }
   return level;
 }
@@ -116,7 +116,7 @@ async function GetComposableCount(getProvider) {
     value = parseInt(BigInt(count._hex).toString(10));
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
   }
   return value;
 }
@@ -131,7 +131,7 @@ async function CheckOwnership(getProvider, connectedAccount) {
     value = parseInt(BigInt(t1._hex).toString(10));
   } catch (err) {
     console.log(err, "error");
-    alert(err.message);
+    
   }
   return value;
 }
