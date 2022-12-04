@@ -2170,7 +2170,20 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         alert(err.message);
         out = err.message;
     }
-    return out;
+
+    try {
+        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+
+
+
 }
 
 
