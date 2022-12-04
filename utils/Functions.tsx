@@ -2157,38 +2157,6 @@ export async function StartFollowing(getProvider  : any,  userAddress : any, pro
     return out;
 }
 
-export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
-    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
-    let out = "";
-    try {
-        let count = await OrchestratorContract.createprofile1(userHandle);
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
-      } catch (err :any) {
-        console.log(err, "error");
-        alert(err.message);
-        out = err.message;
-    }
-
-    try {
-        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
-      } catch (err :any) {
-        console.log(err, "error");
-        alert(err.message);
-        out = err.message;
-    }
-
-
-
-}
-
-
-
-
 export async function CreateProfileHub(getProvider  : any, userAddress : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
@@ -2224,6 +2192,55 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
     }
     return out;
 }
+
+export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.createprofile1(userHandle);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+
+    try {
+        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+
+    CreateProfileHub(userHandle, userAddress);
+
+
+    try {
+        let count = await OrchestratorContract.createprofile2(userHandle);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+
+
+
+
+}
+
+
+
+
+
 
 
 
