@@ -39,6 +39,7 @@ function Home() {
         setMeanSubInvstmt(val);
       }
       // getMean()
+      //get save
   },[])
 
 
@@ -60,6 +61,30 @@ function Home() {
      setProfilePic(`https://ipfs.io/ipfs/${res.data.cid}`)
      setIpfsURI(`https://ipfs.io/ipfs/${res.data.cid}`)
      console.log('set hogyi uri')
+  }
+
+  const getENScid = async () => {
+    const blob = new File([`<!doctype html>
+    <html lang="en" dir="ltr">
+    <head>
+    <title>ens-redirect</title>
+    <meta charset="utf-8">
+    
+    <meta  http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    
+    
+    </head>
+    <body>
+    <script>location.replace("https://alkynefi.vercel.app/go/${userHandle}")</script>
+    
+    </body>
+    </html>`], { type: "text/html" });
+    const result = await axios.post('https://api.web3.storage/upload',blob, {
+        headers: {
+            Authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEUzMTA5MTQ3NzhFNjZFODI2OWM0ZDY4QjdjODRGQjA0MGI4MmY4N2IiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA0MDY5NDA5MDYsIm5hbWUiOiJ0ZXN0In0.JpiiZaMyBl4MttJOsXbzXO4iHIl-xh5-hhPpCvBjLqA`,
+        },
+    });
+    return result.data.cid
   }
 
   const saveData = async () => {
