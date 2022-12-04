@@ -4,9 +4,278 @@ import web3 from "web3";
 import { ethers } from "ethers";
 import { AuthContext,AuthContextProps } from "../context/AuthContext";
 import AlkyneWalletContractABI from '../contract/AlkyneWalletContractABI.json';
-import OrchestratorContractABI from '../contract/OrchestratorContractABI.json';
+// import OrchestratorContractABI from '../contract/OrchestratorContractABI.json';
 // import LensHubContractABI from '../contract/LensHubContractABI';
 import { AbiCoder, defaultAbiCoder } from "ethers/lib/utils";
+
+
+let OrchestratorContractABI = [
+	{
+		"inputs": [],
+		"name": "createProfile1",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "handle",
+				"type": "string"
+			}
+		],
+		"name": "createProfile2",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_alkyneFollowModule",
+				"type": "address"
+			}
+		],
+		"name": "setAlkyneFollowModule",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_alkyneToken",
+				"type": "address"
+			}
+		],
+		"name": "setAlkyneToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_lensHubAddress",
+				"type": "address"
+			}
+		],
+		"name": "setLensHubAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_swapRouter",
+				"type": "address"
+			}
+		],
+		"name": "setSwapRouter",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "alkyneFollowModule",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "alkyneToken",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "alkyneWallets",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getAlkyneWallet",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "wallet",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getProfileId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getRegisteredUsers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lensHubAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "lensProfiles",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "swapRouter",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
 
 
 let  LensHubContractABI = [
@@ -1768,10 +2037,16 @@ const useBlockchain = async (getProvider:any) =>{
     const provider = await getProvider();
     const signer = provider?.getSigner();
     let OrchestratorContract:any = new ethers.Contract(
-        "0x51CF51be65E1B820853E527b3f1D824D29307659",
-        LensHubContractABI,
+        "0xbF2D30a12755EF575CF10B05432194B48Aa51574",
+        OrchestratorContractABI,
         signer
     );
+
+
+
+
+
+
     let WalletContract:any = new ethers.Contract(
         "0x51CF51be65E1B820853E527b3f1D824D29307659",
         LensHubContractABI,
@@ -1882,22 +2157,44 @@ export async function StartFollowing(getProvider  : any,  userAddress : any, pro
     return out;
 }
 
+export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await OrchestratorContract.createprofile1(userHandle);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
 
-export async function CreateProfileHub(getProvider  : any) {
+
+
+
+export async function CreateProfileHub(getProvider  : any, userAddress : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
 
     const val =  {
         to: "0x67C1dbA6F01fe836E6BB4c8B883392E6CfE92aa9",
-        handle: "sdvab",
+        handle: "sddsfvdfvab",
         imageURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
-        followModule: '0x0000000000000000000000000000000000000000',
+        followModule: '0x976f486319d6D6248e966D9aC29F74af4f4D6BB7',
         followModuleInitData: defaultAbiCoder.encode(
-          [],
-          [
-          
-          ]
-        ),
+    ['address', 'address', 'address', 'uint256'],
+    [
+     "0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42",
+        userAddress,
+      '0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42',
+      100,
+    ]
+  );
+
         followNFTURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
       };
     
