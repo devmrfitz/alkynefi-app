@@ -2157,7 +2157,7 @@ export async function StartFollowing(getProvider  : any,  userAddress : any, pro
     return out;
 }
 
-export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any) {
+export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress: any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
     let out = "";
     try {
