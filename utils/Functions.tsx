@@ -2142,10 +2142,10 @@ export async function GetFollowersArray(getProvider  : any,  userAddress : any) 
 
 
 export async function StartFollowing(getProvider  : any,  userAddress : any, profileids : any, datas : any) {
-    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
     try {
-        let count = await LensProfileContract.follow(profileids, datas);
+        let count = await LensHubContract.follow(profileids, datas);
         let x = count.wait();
         console.log(x," x")
         out = x;
@@ -2194,7 +2194,7 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
 }
 
 export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
-    const [provider, signer, OrchestratorContract, WalletContract, LensProfileContract] = await useBlockchain(getProvider);
+    const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
     try {
         let count = await OrchestratorContract.createprofile1(userHandle);
@@ -2218,7 +2218,36 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = err.message;
     }
 
-    CreateProfileHub(userHandle, userAddress);
+    let out2 = "";
+
+    const val =  {
+        to: "0x67C1dbA6F01fe836E6BB4c8B883392E6CfE92aa9",
+        handle: "sddsfvdfvab",
+        imageURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
+        followModule: '0x976f486319d6D6248e966D9aC29F74af4f4D6BB7',
+        followModuleInitData: defaultAbiCoder.encode(
+            ['address', 'address', 'address', 'uint256'],
+            [
+            "0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42",
+                userAddress,
+            '0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42',
+            100,
+            ]
+        ),
+        followNFTURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
+    };
+    
+
+    try {
+        let count = await LensHubContract.createProfile(val);
+        let x = count.wait();
+        console.log(x," x")
+        out2 = x;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out2 = err.message;
+    }
 
 
     try {
