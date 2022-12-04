@@ -18,7 +18,7 @@
     "@walletconnect/ethereum-provider": "^2.1.4",
     "@walletconnect/web3-provider": "^1.8.0",
     "axios": "^1.2.0",
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "ethers": "^5.7.2",
