@@ -2197,7 +2197,7 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
     try {
-        let count = await OrchestratorContract.createprofile1(userHandle);
+        let count = await OrchestratorContract.createProfile1(userHandle);
         let x = count.wait();
         console.log(x," x")
         out = x;
@@ -2251,7 +2251,7 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
 
 
     try {
-        let count = await OrchestratorContract.createprofile2(userHandle);
+        let count = await OrchestratorContract.createProfile2(userHandle);
         let x = count.wait();
         console.log(x," x")
         out = x;
