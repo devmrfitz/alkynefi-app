@@ -276,8 +276,6 @@ let OrchestratorContractABI = [
 		"type": "function"
 	}
 ]
-
-
 let  LensHubContractABI = [
 	{
 		"inputs": [
