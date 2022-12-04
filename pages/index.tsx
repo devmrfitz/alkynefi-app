@@ -88,8 +88,6 @@ function Home() {
   }
 
   const saveData = async () => {
-
-    const res = await Signup(getProvider,userHandle,ipfsURI,maxAmount)
     let userAddress=account
     const result = await GetAlkyneWalletAddress(getProvider,userHandle,userAddress)
     isSaved(true)

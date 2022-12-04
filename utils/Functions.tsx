@@ -2043,10 +2043,6 @@ const useBlockchain = async (getProvider:any) =>{
     );
 
 
-
-
-
-
     let WalletContract:any = new ethers.Contract(
         "0x51CF51be65E1B820853E527b3f1D824D29307659",
         LensHubContractABI,
@@ -2196,27 +2192,27 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
 export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
+    // try {
+    //     let count = await OrchestratorContract.createProfile1();
+    //     console.log(count," x")
+    //     out = count;
+    //   } catch (err :any) {
+    //     console.log(err, "error");
+    //     alert(err.message);
+    //     out = err.message;
+    // }
+
     try {
-        let count = await OrchestratorContract.createProfile1(userHandle);
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
+        let count2 = await OrchestratorContract.getAlkyneWallet(userAddress);
+        console.log(count2," x")
+        out = count2;
       } catch (err :any) {
         console.log(err, "error");
         alert(err.message);
         out = err.message;
     }
 
-    try {
-        let count = await OrchestratorContract.getAlkyneWallet(userAddress);
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
-      } catch (err :any) {
-        console.log(err, "error");
-        alert(err.message);
-        out = err.message;
-    }
+// out have the getAlkyneWallet
 
     let out2 = "";
 
@@ -2230,7 +2226,7 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
             [
             "0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42",
                 userAddress,
-            '0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42',
+            out,
             100,
             ]
         ),
@@ -2260,10 +2256,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         alert(err.message);
         out = err.message;
     }
-
-
-
-
 }
 
 
