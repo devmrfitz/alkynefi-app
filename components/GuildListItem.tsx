@@ -22,8 +22,8 @@ function GuildListItem({userAddress,rank}:GuildListProps) {
   const follow = async () =>{
     // const res = await StartFollowing
 
-    let x = GetProfileIdByUserName();
-    const res = await StartFollowing(getProvider,account,[x],);
+    // let x = GetProfileIdByUserName();
+    // const res = await StartFollowing(getProvider,account,[x],);
     
     router.push('https://staging.push.org/#/channels')
 
@@ -40,7 +40,7 @@ function GuildListItem({userAddress,rank}:GuildListProps) {
       console.log(res.length)
       setFollowers(res.length)
     }
-    getValues()
+    // getValues()
   },[])
 
   return (

@@ -276,8 +276,6 @@ let OrchestratorContractABI = [
 		"type": "function"
 	}
 ]
-
-
 let  LensHubContractABI = [
 	{
 		"inputs": [
@@ -2215,7 +2213,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = count;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
         out = err.message;
     }
 
@@ -2225,7 +2222,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = count2;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
         out = err.message;
     }
 
@@ -2257,7 +2253,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out2 = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
         out2 = err.message;
     }
 
@@ -2269,7 +2264,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = x;
       } catch (err :any) {
         console.log(err, "error");
-        alert(err.message);
         out = err.message;
     }
 }
