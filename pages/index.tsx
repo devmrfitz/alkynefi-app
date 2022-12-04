@@ -91,7 +91,9 @@ function Home() {
     let userAddress=account
     const result = await GetAlkyneWalletAddress(getProvider,userHandle,userAddress)
     isSaved(true)
-    console.log(res);
+    c
+    
+    onsole.log(res);
     console.log(result);
   }
 

@@ -2,7 +2,7 @@ import React, {useEffect, useContext, useState, useRef}  from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import {GetMeanSubPrice,StartFollowing,GetFollowersArray} from '../utils/Functions'
+import {GetMeanSubPrice,StartFollowing,GetFollowersArray,GetProfileIdByUserName} from '../utils/Functions'
 import {AuthContext,AuthContextProps} from "../context/AuthContext";
 
 
@@ -21,7 +21,13 @@ function GuildListItem({userAddress,rank}:GuildListProps) {
 
   const follow = async () =>{
     // const res = await StartFollowing
+
+    let x = GetProfileIdByUserName();
+    const res = await StartFollowing(getProvider,account,[x],);
+    
     router.push('https://staging.push.org/#/channels')
+
+
   }
 
   useEffect(() => {

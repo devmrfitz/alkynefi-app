@@ -4,7 +4,7 @@ import {AuthContext,AuthContextProps} from '../context/AuthContext'
 import {GetAllAddresses} from '../utils/Functions'
 //@ts-ignore
 function Leaderboard() {
-  const [data,setData] = useState<any>(["0x526AFE1742c655D94cB98E6Bf9e9865112C15264", "0x67C1dbA6F01fe836E6BB4c8B883392E6CfE92aa9", "0x9E48fA821A9A4A63591e04F796e2651238059DcD", ""]);
+  const [data,setData] = useState<any>(["heemankv", "qwerty", "qazwsx", "qwertyu", "aditya"]);
   const {getProvider} = useContext<AuthContextProps>(AuthContext)
   
   useEffect(() =>{

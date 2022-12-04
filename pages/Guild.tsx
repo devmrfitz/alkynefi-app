@@ -7,7 +7,7 @@ import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import axios from 'axios'
 import Image from 'next/image'
-import {GetMeanSubPrice,Signup} from '../utils/Functions'
+import {GetMeanSubPrice, StartFollowing} from '../utils/Functions'
 import {AuthContext,AuthContextProps} from "../context/AuthContext";
 //@ts-ignore
 
@@ -39,7 +39,7 @@ function Guild() {
   },[])
 
   const follow = async () =>{
-    // const res = await StartFollowing
+    const res = await StartFollowing(getProvider,account,['']);
     router.push('https://staging.push.org/#/channels')
   }
 

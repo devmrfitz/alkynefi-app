@@ -2137,11 +2137,11 @@ export async function GetFollowersArray(getProvider  : any,  userAddress : any) 
 
 
 
-export async function StartFollowing(getProvider  : any,  userAddress : any, profileids : any, datas : any) {
+export async function StartFollowing(getProvider  : any,  userAddress : any, profileids : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
     try {
-        let count = await LensHubContract.follow(profileids, datas);
+        let count = await LensHubContract.follow(profileids);
         let x = count.wait();
         console.log(x," x")
         out = x;
@@ -2152,6 +2152,24 @@ export async function StartFollowing(getProvider  : any,  userAddress : any, pro
     }
     return out;
 }
+
+
+export async function GetProfileIdByUserName(getProvider  : any,  userHandle : any) {
+    const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
+    let out = "";
+    try {
+        let count = await LensHubContractABI.getProfileIdByHandle(userHandle);
+        let x = count.wait();
+        console.log(x," x")
+        out = x;
+        } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
+    return out;
+}
+
 
 export async function CreateProfileHub(getProvider  : any, userAddress : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
@@ -2192,15 +2210,15 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
 export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : any, userAddress : any) {
     const [provider, signer, OrchestratorContract, WalletContract, LensHubContract] = await useBlockchain(getProvider);
     let out = "";
-    // try {
-    //     let count = await OrchestratorContract.createProfile1();
-    //     console.log(count," x")
-    //     out = count;
-    //   } catch (err :any) {
-    //     console.log(err, "error");
-    //     alert(err.message);
-    //     out = err.message;
-    // }
+    try {
+        let count = await OrchestratorContract.createProfile1();
+        console.log(count," x")
+        out = count;
+      } catch (err :any) {
+        console.log(err, "error");
+        alert(err.message);
+        out = err.message;
+    }
 
     try {
         let count2 = await OrchestratorContract.getAlkyneWallet(userAddress);
@@ -2256,16 +2274,3 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = err.message;
     }
 }
-
-
-//get net investment - portfolio total value
-
-//get max invested asset
-
-// get number of followers 
-
-//follow function
-
-//swap functions
-
-
