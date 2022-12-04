@@ -3,7 +3,7 @@ import React,{useEffect} from 'react'
 import Image from 'next/image'
 import Chart from "chart.js";
 
-function AssetInfo() {
+function AssetInfo({address,chainId}:any) {
   let [portfolioValue, setPortfolioValue] = React.useState({});
   let [portfolioValueUSDPast, setPortfolioValueUSDPast] = React.useState([]);  
   let [loading, setLoading] = React.useState(true);

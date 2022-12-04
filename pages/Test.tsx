@@ -22,35 +22,23 @@ import * as ethers from "ethers";
 //     console.log(notifications)
 //   }
 
-//   const sendNotification = async() => {
-//     PushAPI.user.getSubscriptions
-//     try {
-//       const apiResponse = await PushAPI.payloads.sendNotification({
-//         signer,
-//         type: 3, // target
-//         identityType: 2, // direct payload
-//         notification: {
-//           title: `sending notif:`,
-//           body: `hi bro`
-//         },
-//         payload: {
-//           title: `hi bro`,
-//           body: `Hello bro!!!`,
-//           cta: '',
-//           img: ''
-//         },
-//         recipients: 'eip155:'+chainId+':'+address, // recipient address
-//         channel: 'eip155:'+chainId+':'+account, // your channel address
-//         env: 'staging'
-//       });
-      
-//       // apiResponse?.status === 204, if sent successfully!
-//       console.log('API repsonse: ', apiResponse);
-//     } catch (err) {
-//       console.error('Error: ', err);
-//     }
-//   }
-
+// const apiResponse = await PushAPI.payloads.sendNotification({
+//   signer,
+//   type: 1, // broadcast
+//   identityType: 2, // direct payload
+//   notification: {
+//     title: `[SDK-TEST] notification TITLE:`,
+//     body: `[sdk-test] notification BODY`
+//   },
+//   payload: {
+//     title: `[sdk-test] payload title`,
+//     body: `sample msg body`,
+//     cta: '',
+//     img: ''
+//   },
+//   channel: 'eip155:'+chainId+':'+account, // your channel address
+//   env: 'staging'
+// });
 
 //   return (
 //     <div className="relative h-screen overflow-hidden flex flex-col items-center justify-center  bg-no-repeat	bg-fixed px-52">

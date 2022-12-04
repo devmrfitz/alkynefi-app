@@ -24,7 +24,7 @@ function Home() {
   const [maxAmount,setMaxAmount] = useState('0');
   const [meanSubInvstmt,setMeanSubInvstmt] = useState('0');
   const [capital,setCapital] = useState('0');
-  const {account, connect, disconnect,getProvider} = useContext<AuthContextProps>(AuthContext);
+  const {account, chainId, disconnect,getProvider} = useContext<AuthContextProps>(AuthContext);
 
   const router = useRouter();
 
@@ -114,7 +114,7 @@ function Home() {
       <p className='font-[200]'>Maximum Subscriber Value</p>
 
 
-      <AssetInfo/>
+      <AssetInfo chainId={chainId} address={account}/>
       <h2 className='relative z-0 mb-[-2.5rem] leading-[5rem] text-[#974f83] opacity-75 font-[900] text-[7.75rem]'>Current Value</h2>
       <CurrentValue meanSubInvstmt={meanSubInvstmt} 
                     capital={capital}/>
