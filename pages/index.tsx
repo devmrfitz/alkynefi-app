@@ -7,7 +7,7 @@ import CurrentValue from '../components/CurrentValue'
 import Graph from '../components/Graph'
 import axios from 'axios'
 import Image from 'next/image'
-import {GetMeanSubPrice,Signup} from '../utils/Functions'
+import {GetMeanSubPrice,Signup,GetAlkyneWalletAddress} from '../utils/Functions'
 import {AuthContext,AuthContextProps} from "../context/AuthContext";
 //@ts-ignore
 
@@ -90,8 +90,11 @@ function Home() {
   const saveData = async () => {
 
     const res = await Signup(getProvider,userHandle,ipfsURI,maxAmount)
-    console.log(res);
+    let userAddress=account
+    const result = await GetAlkyneWalletAddress(getProvider,userHandle,userAddress)
     isSaved(true)
+    console.log(res);
+    console.log(result);
   }
 
 
