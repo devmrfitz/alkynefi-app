@@ -2091,9 +2091,8 @@ export async function GetAllAddresses(getProvider  : any) {
     let out = "";
     try {
         let count = await OrchestratorContract.getRegisteredUsers();
-        let x = count.wait();
-        console.log(x," x")
-        out = x;
+        console.log(count," x")
+        out = count;
       } catch (err :any) {
         console.log(err, "error");
         alert(err.message);
