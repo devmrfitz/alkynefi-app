@@ -2206,7 +2206,7 @@ export async function CreateProfileHub(getProvider  : any, userAddress : any) {
       '0xFBfB4A7c17eFAE6E9b72859fBFE88808B5536F42',
       100,
     ]
-  );
+  ),
 
         followNFTURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
       };
