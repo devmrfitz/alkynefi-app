@@ -4,7 +4,7 @@ import {AuthContext,AuthContextProps} from '../context/AuthContext'
 import {GetAllAddresses} from '../utils/Functions'
 //@ts-ignore
 function Leaderboard() {
-  const [data,setData] = useState<any>([]);
+  const [data,setData] = useState<any>(["0x526AFE1742c655D94cB98E6Bf9e9865112C15264", "0x67C1dbA6F01fe836E6BB4c8B883392E6CfE92aa9", "0x9E48fA821A9A4A63591e04F796e2651238059DcD", ""]);
   const {getProvider} = useContext<AuthContextProps>(AuthContext)
   
   useEffect(() =>{
@@ -21,7 +21,7 @@ function Leaderboard() {
       {data.slice(0,5).map((item:any, index:number)=>(
         <div className="w-[60%]" key={index}>  
           <h2 className="Mulish font-[900] text-[3rem]  text-secondary opacity-[80%] absolute z-10 rotate-[-30deg]">#{index+1}</h2>
-          <GuildListItem userAddress={'hello'} 
+          <GuildListItem userAddress={item} 
                          rank={index}/>
         </div>
       ))}

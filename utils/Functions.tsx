@@ -2232,7 +2232,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         ),
         followNFTURI: 'ipfs://bafybeiaahkgliyhug3wg7cjudgubyg5o2j3kcig3kpdfj73xvyegv5bngu',
     };
-    
 
     try {
         let count = await LensHubContract.createProfile(val);
@@ -2257,13 +2256,6 @@ export async function GetAlkyneWalletAddress(getProvider  : any,  userHandle : a
         out = err.message;
     }
 }
-
-
-
-
-
-
-
 
 
 //get net investment - portfolio total value

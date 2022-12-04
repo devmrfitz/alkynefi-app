@@ -12,8 +12,6 @@ import {AuthContext,AuthContextProps} from "../context/AuthContext";
 //@ts-ignore
 
 function Guild() {
-
-
   const [profilePic,setProfilePic] = useState<any>('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
   const [userHandle,setUserHandle] = useState('Username')
   const [followers,setFollowers] = useState(0);
